@@ -1,0 +1,50 @@
+{% extends 'home.html' %}
+
+{% block main %}
+    {% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+
+     <div id="main" class="col-left">
+
+         {% for post in post_list %}
+
+
+                    <div id="post-{{ post.pk }}" class="post-{{ post.pk }} post type-post status-publish format-standard hentry">
+                        <div class="post-content">
+                            <div class="post-title">
+                                <h1>
+                                    <a href="{{ post.get_absolute_url }}" rel="bookmark" title="Permanent Link to {{ post.title }}">{{ post.title }}</a></h1>
+                            </div>
+
+
+                            <div class="post-meta">
+                                <span class="post-meta-info">{{ post.created_time|date:"Y-m-d" }}
+                                    <a href="#" title="由 {{ post.author }} 发布" rel="author">{{ post.author }}</a>
+                                    <a href="{% url 'article:category' post.category.pk %}" title="查看 {{ post.category.name }} 中的全部文章" rel="category tag"> {{ post.category.name }} </a></span>
+
+                                <span class="post-meta-comments">
+                                    <a href="#" title="《{{ post.title }}》上的评论">0 comments</a></span>
+
+                                <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
+
+
+                                <span class="post-meta-info"></span>
+                            </div>
+                            <div class="post-entry">
+                              {{ post.excerpt }}
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--#END post-content --></div>
+                    <!-- #END post -->
+
+
+            {% empty %}
+            <div class="no-post">暂时还没有发布的文章！</div>
+
+         {% endfor %}
+
+                </div>
+
+{% endblock main %}

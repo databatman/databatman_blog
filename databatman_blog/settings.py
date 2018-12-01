@@ -25,7 +25,7 @@ SECRET_KEY = 'uq6$ukw5!fta*7s@-jjt#=10p1$###i(z_3^r(7^ybbuyef-cs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'article',
+    'haystack',
+
 ]
 
 MIDDLEWARE = [
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'databatman_blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR+"/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +121,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+# django-haystack
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'article.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+

@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+
+{% block main %}
+      <div id="main" class="col-left">
+
+
+
+                  <div id="post-1" class="post-1 post type-post status-publish format-standard hentry">
+                        <div class="post-content">
+                            <div class="post-title">
+                                <h1>
+                                    <a href="{% url 'article:index' %}" rel="bookmark" title="Permanent Link to 关于作者">关于作者</a></h1>
+                            </div>
+
+
+                            <div class="post-meta">
+                                <span class="post-meta-info">
+                                    <a href="#" title="由 databatman 发布" rel="author">databatman</a>
+                                </span>
+
+                                <span class="post-meta-comments">
+                                    <a href="#" title="《关于作者》上的评论">0 comments</a></span>
+
+                                <span class="post-meta-info"></span>
+                            </div>
+                            <div class="post-entry">
+                                <p>机器学习从业者，java/python/spark一知半解，喜欢将复杂的东西写成白话，很高兴认识你。
+                                blog开发中，暂时不支持评论...</p>
+                                <p>--<br />
+                                万年竞赛id: databatman<br />
+                                邮箱: krzhou@alumni.sjtu.edu.cn<br />
+                                base in shanghai</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--#END post-content --></div>
+                    <!-- #END post -->
+
+                </div>
+{% endblock main %}
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">文章目录</h3>
+        {{ post.toc|safe }}
+    </div>
+{% endblock toc %}
