@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.views.static import serve
+import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -22,3 +24,6 @@ urlpatterns = [
     url(r'^search/', include('haystack.urls')),
 
 ]
+
+if not settings.DEBUG:
+    urlpatterns += [url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})]
