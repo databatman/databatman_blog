@@ -1,6 +1,6 @@
 <uwsgi>
     <socket>:8080</socket>
-    <chdir>/Users/krzhou/MyProject/project/zkblog/databatman_blog/databatman_blog</chdir>
+    <chdir>/root/zkblog/databatman_blog</chdir>
     <module>databatman_blog.wsgi</module>
     <processes>5</processes>
     <daemonize>uwsgi.log</daemonize>

@@ -12,13 +12,19 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^article/', include('article.urls'))
-"""
+""" 
+
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.views.static import serve
+import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include("article.urls")),
-    url(r'^search/', include('haystack.urls')),
+    url(r'^search/', include('haystack.urls'))
 
 ]
+
+if not settings.DEBUG:
+    urlpatterns += [url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})]
