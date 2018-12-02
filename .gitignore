@@ -2,3 +2,7 @@
 *.swp
 *~
 *.log
+*/*.pyc
+*/*.swp
+*.seg
+*.toc
